@@ -5,24 +5,14 @@ services:
     dockerfilePath: ./Dockerfile
     plan: free
     envVars:
-      - key: SPRING_DATASOURCE_URL
+      - key: DATABASE_URL
         fromDatabase:
           name: job-tracker-db
           property: connectionString
-      - key: SPRING_DATASOURCE_USERNAME
-        fromDatabase:
-          name: job-tracker-db
-          property: user
-      - key: SPRING_DATASOURCE_PASSWORD
-        fromDatabase:
-          name: job-tracker-db
-          property: password
-      - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
-        value: org.postgresql.Driver
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
         value: update
-      - key: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
-        value: org.hibernate.dialect.PostgreSQLDialect
+      - key: SPRING_JPA_OPEN_IN_VIEW
+        value: "false"
 
 databases:
   - name: job-tracker-db
